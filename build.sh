@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 
 docker build -tq edge-lb ./lb/
-#docker create  -p 192.168.168.203:80:80 -h puppet --privileged --name="loadbalancer"  edge-lb
-docker create  -p 37.187.241.48:70:80 -h puppet --privileged --name="loadbalancer"  edge-lb
+docker create  -p 192.168.168.203:80:80 -h puppet --privileged --name="loadbalancer"  edge-lb
 docker start loadbalancer
 docker build -tq edge-srv ./srv/
 docker create --privileged --name="srv1" -h srv1 --link loadbalancer:puppet  edge-srv
